@@ -1,0 +1,13 @@
+# Mac OSX 12.3.1, docker desktop 4.5.0
+
+# Create container and share local folder
+docker run -v /Users/briandietz/Desktop/docker_tests/uuid-2:/home/uuid/ -it kali_rolling:bit_curator /bin/bash
+
+# Run bulk_extractor
+bulk_extractor -S ssn_mode=1 -S jpeg_carve_mode=0 -S unzip_carve_mode=0 -S unrar_carve_mode=0 -S winpe_carve_mode=0  -o reports/b_e_buf19 content/buf19.img
+
+# Run mmls to find file system of disk image (HFS)
+mmls content/buf19.img
+
+# Run brunnhilde
+brunnhilde.py -d --hfs -n content/buf19.img reports/b_r_reports_buf`
