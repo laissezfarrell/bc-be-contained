@@ -1,4 +1,4 @@
-# Mac OSX 12.3.1, docker desktop 4.5.0
+# Mac OSX 12.3.1, docker desktop 4.5.0, container referencing image made with Dockerfile from 20220405
 
 # Create container and share local folder
 docker run -v /Users/briandietz/Desktop/docker_tests/uuid-2:/home/uuid/ -it kali_rolling:bit_curator /bin/bash
