@@ -11,3 +11,32 @@ mmls content/buf19.img
 
 # Run brunnhilde
 brunnhilde.py -d --hfs -n content/buf19.img reports/b_r_reports_buf`
+
+
+# Windows 10 (1809, build 17763.2686), Docker Desktop 4.7.0 (77141) [but, bc my version of Windows is so old, I got a message that I couldn't update past 3.6, so not sure what's going on there. Perhaps I'm not making use of features past 3.6]
+
+## Create Container and share local folders
+- Run PowerShell as Administrator
+- Tell Docker Desktop which folder(s) (this works recursively, so may specify a parent folder)
+- > docker run -v C:\Users\mjf33\git-projects\testing-docker\sample-data\disk-images:/home/sample-data/disk-images:ro C:\...
+
+## Run bulk_extractor
+bulk_extractor -S ssn_mode=1 -e outlook -x zip -x rar -x winpe -x exif -o /home/sample-output/reports/terry_beout /home/sample-data/disk-images/terry-work-usb-2009-12-11.E01
+
+## Run brunnhilde
+brunnhilde.py --hash sha1 -d --hfs --hfs_partition 1 -l /home/sample-data/disk-images/buf19.img  /home/sample-output/reports/BUF10_brunnout
+
+## Notes
+- Did not use git bash, though have it on this machine. More used to Powershell so ran with that
+- current container pulls bulk_extractor 2.0.0-beta2, which has different behavior than what I'm used to
+- Both b_e and brunnhilde ran successfully, however, and the reports are available on my host machine.
+- next steps:
+	- run as is on logical files (rather than disk images)
+	- how to introduce/deploy batch scripts (clone my github repo as part of the Dockerfile?)
+	- how to introduce automation (e.g., can the manual steps we take in the docker run step be added into the Dockerfile? I would guess no, or not that easily, given that I have tell Windows what folders may be shared via Docker Desktop
+	- Can we atomize the containers? This would mean either deploying TSK in multiple containers or having containers be able to reference parts of themselves (which may not even be possible?)
+		- Base Image Container 0
+			- Container 1: run a certain set of commands/processes (e.g., core reporting on disk images)
+			- Container 2: run optional second set of commands processes (e.g., additional reporting on disk images)
+			- Container 3: etc. (core reporting on logical files)
+			- Container 4: optional email reports (deploy ratom and report)
