@@ -18,7 +18,7 @@ brunnhilde.py -d --hfs -n content/buf19.img reports/b_r_reports_buf`
 ## Create Container and share local folders
 - Run PowerShell as Administrator
 - Tell Docker Desktop which folder(s) (this works recursively, so may specify a parent folder)
-- > docker run -v C:\Users\mjf33\git-projects\testing-docker\sample-data\disk-images:/home/sample-data/disk-images:ro C:\...
+- docker run -v C:\Users\mjf33\git-projects\testing-docker\sample-data\disk-images:/home/sample-data/disk-images:ro -v C:\Users\mjf33\git-projects\testing-docker\reports:/home/sample-output/reports -it kali_rolling:bit_curator /bin/bash
 
 ## Run bulk_extractor
 bulk_extractor -S ssn_mode=1 -e outlook -x zip -x rar -x winpe -x exif -o /home/sample-output/reports/terry_beout /home/sample-data/disk-images/terry-work-usb-2009-12-11.E01
