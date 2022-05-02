@@ -3,8 +3,16 @@
 # Create container and share local folder
 docker run -v /Users/briandietz/Desktop/docker_tests/uuid-2:/home/uuid/ -it kali_rolling:bit_curator /bin/bash
 
-# Run bulk_extractor
+# Run bulk_extractor 
+BULK_EXTRACTOR-Version: 2.0.0-beta2
 bulk_extractor -S ssn_mode=1 -S jpeg_carve_mode=0 -S unzip_carve_mode=0 -S unrar_carve_mode=0 -S winpe_carve_mode=0  -o reports/b_e_buf19 content/buf19.img
+
+note: still carved files
+
+# BULK_EXTRACTOR-Version: 2.0.1
+bulk_extractor -S ssn_mode=1 -x exif -o reports/new_b_e/b_e_buf19 content/buf19.img
+
+Note: did not carve any files
 
 # Run mmls to find file system of disk image (HFS)
 mmls content/buf19.img
