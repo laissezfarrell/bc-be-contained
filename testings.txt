@@ -4,21 +4,22 @@
 docker run -v /Users/briandietz/Desktop/docker_tests/uuid-2:/home/uuid/ -it kali_rolling:bit_curator /bin/bash
 
 # Run bulk_extractor 
-BULK_EXTRACTOR-Version: 2.0.0-beta2
+## BULK_EXTRACTOR-Version: 2.0.0-beta2
 bulk_extractor -S ssn_mode=1 -S jpeg_carve_mode=0 -S unzip_carve_mode=0 -S unrar_carve_mode=0 -S winpe_carve_mode=0  -o reports/b_e_buf19 content/buf19.img
 
 note: still carved files
 
-# BULK_EXTRACTOR-Version: 2.0.1
-bulk_extractor -S ssn_mode=1 -x exif -o reports/new_b_e/b_e_buf19 content/buf19.img
+## BULK_EXTRACTOR-Version: 2.0.1 in amazonlinux_b_e container
 
-Note: did not carve any files
+bulk_extractor -F reports/find_file.txt -S ssn_mode=1 -x exif -o reports/new_b_e/b_e_buf19 content/buf19.img
+
+Note: carved ZIP but not JPEG; -F find_file.txt worked ("Membership")
 
 # Run mmls to find file system of disk image (HFS)
 mmls content/buf19.img
 
 # Run brunnhilde
-brunnhilde.py -d --hfs -n content/buf19.img reports/b_r_reports_buf`
+brunnhilde.py -d --hfs -n content/buf19.img reports/b_r_reports_buf
 
 
 # Windows 10 (1809, build 17763.2686), Docker Desktop 4.7.0 (77141) [but, bc my version of Windows is so old, I got a message that I couldn't update past 3.6, so not sure what's going on there. Perhaps I'm not making use of features past 3.6]
