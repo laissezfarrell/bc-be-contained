@@ -23,7 +23,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 20F802FE798E6857 &&
 RUN mkdir /usr/share/hfsexplorer && cd /usr/share/hfsexplorer && wget https://sourceforge.net/projects/catacombae/files/HFSExplorer/0.23.1%20%28snapshot%202016-09-02%29/hfsexplorer-0.23.1-snapshot_2016-09-02-bin.zip && unzip hfsexplorer-0.23.1-snapshot_2016-09-02-bin.zip && rm hfsexplorer-0.23.1-snapshot_2016-09-02-bin.zip
 
 # Install brunnhilde and bagit
-RUN pip3 install brunnhilde bagit
+RUN pip3 install brunnhilde bagit isolyzer
 
 # Install walk_to_dfxml
 RUN cd /home/repos && git clone https://github.com/dfxml-working-group/dfxml_python.git && cd dfxml_python && pip3 install .
