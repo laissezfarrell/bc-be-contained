@@ -49,3 +49,18 @@ brunnhilde.py --hash sha1 -d --hfs --hfs_partition 1 -l /home/sample-data/disk-i
 			- Container 2: run optional second set of commands processes (e.g., additional reporting on disk images)
 			- Container 3: etc. (core reporting on logical files)
 			- Container 4: optional email reports (deploy ratom and report)
+
+# Ubuntu 18.04.6 LTS (GNU/Linux 4.15.0-176-generic x86_64) (VM provisioned by Duke OIT, ssh'd from another machine; Docker version 20.10.16, build aa7e414
+
+## Build the docker image (using the Ubuntu_Latest Dockerfile)
+- docker build -t ubuntu_latest:bitcurator . 
+    - seemd to run into some issues deploying bulk_extractor around libewf, but continued to run
+    - apparently succeeded!
+- next steps: 
+    - run Docker run stuff
+    - after running the container I want to clone a repo (rl-bitcurator-scripts) in the Container
+    - assuming I can do that interactively, need to build that into the Dockerfile
+    - assumign that works, I need to (outside of the container) add a dir to the rl-bitcurator-scripts repo that includes versions of the scripts that will work with the way share d folders are set up in Docker
+        - this will probably take a little thinking...
+        - will need to document how to set up shared folders between host/container consistently
+        - will need to (eventually) revisit the scripts themselves and maybe combine to be a bit more comprehensive (1 script that can handle options rather than multiple scripts to run ddlin different scenarios)
