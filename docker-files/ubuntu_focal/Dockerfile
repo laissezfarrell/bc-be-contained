@@ -28,5 +28,5 @@ RUN pip3 install brunnhilde bagit isolyzer
 # Install walk_to_dfxml
 RUN cd /home/repos && git clone https://github.com/dfxml-working-group/dfxml_python.git && cd dfxml_python && pip3 install .
 
-## Install rclone
-RUN curl https://rclone.org/install.sh | sudo bash
+# Install rclone
+# RUN curl https://rclone.org/install.sh | sudo bash
