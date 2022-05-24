@@ -4,7 +4,7 @@ FROM ubuntu:focal
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get -y update && apt-get -y upgrade && apt-get -y install build-essential clamav clamav-daemon curl disktype dvd+rw-tools fdisk git libimage-exiftool-perl mediainfo wget python3-pip sleuthkit sudo tree unzip software-properties-common
+RUN apt-get -y update && apt-get -y upgrade && apt-get -y install build-essential clamav clamav-daemon curl disktype dvd+rw-tools fdisk git libimage-exiftool-perl mediainfo wget python3-pip sleuthkit sudo tree unzip software-properties-common default-jre
 
 # Install clamav
 # note this step may not be necessary for building image
