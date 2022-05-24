@@ -64,3 +64,23 @@ brunnhilde.py --hash sha1 -d --hfs --hfs_partition 1 -l /home/sample-data/disk-i
         - this will probably take a little thinking...
         - will need to document how to set up shared folders between host/container consistently
         - will need to (eventually) revisit the scripts themselves and maybe combine to be a bit more comprehensive (1 script that can handle options rather than multiple scripts to run ddlin different scenarios)
+	
+## Same VM
+  - build image from ubuntu_focal 
+  - run a container, sharing 3 local folders: with test data in subfolders, a folder for reports, and a final folder with my RL scripts
+  - run stuff over the test data both individually and using bash scripts--this worked with some changes. Need to create bash scripts for bulk_extractor v2, and modify paths
+  - get reports from VM to host--can do
+
+## thoughts and notes
+- took 12 minutes to build--once an image is built from dockerfile, does it need to rebuild every time?
+- made the mistake of sharing both sample-data and report-output in one parent directory, so can't make use of RO option in sharing
+- max thread on my Linux VM is only 2 (but this is a 2 GB VM). should try it on 
+- ctrl-d to stop and detach from container
+- docker start and docker attach to restart and reattach to containerls
+-issues running brunnhilde as a one-off:
+  - Java appears to not be installed properly (which breaks hfs_explorer)
+    - /usr/share/hfsexplorer/bin/unhfs: 10: java: not found
+  - tsk is persnickety but I think that's the disk image (all three sample images required me to input the sector offset, which has not always been the case...)
+- added default-jre to the Dockerfile (on a new branch)
+- built the new image and ran the container. Seemed to work, though wonder if there's a lighter-weight version of Java than the default
+
