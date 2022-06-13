@@ -1,0 +1,10 @@
+version : '3'
+services:
+  bdap:
+    image: focal:bdap
+    tty: true
+    stdin_open: true
+    volumes:
+     - /Users/borndigital/born_digital/[uuid]:/Users/borndigital/born_digital/[uuid] # verify
+     - /Volumes:/Volumes:ro
+    user: update
