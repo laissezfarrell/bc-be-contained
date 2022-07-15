@@ -30,3 +30,6 @@ RUN cd /home/repos && git clone https://github.com/dfxml-working-group/dfxml_pyt
 
 # Install rclone
 # RUN curl https://rclone.org/install.sh | sudo bash
+
+# Install RATOM library
+RUN pip3 install libratom
