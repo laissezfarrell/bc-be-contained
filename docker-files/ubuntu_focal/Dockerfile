@@ -4,11 +4,21 @@ FROM ubuntu:focal
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get -y update && apt-get -y upgrade && apt-get -y install build-essential clamav clamav-daemon curl disktype dvd+rw-tools fdisk git libimage-exiftool-perl mediainfo wget python3-pip sleuthkit sudo tree unzip software-properties-common default-jre
+ARG USERNAME=tuffy
+ARG GROUPNAME=scrc
+ARG USER_UID=1000
+ARG USER_GID=2000
 
-# Install clamav
-# note this step may not be necessary for building image
+RUN groupadd --gid $USER_GID $GROUPNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    && apt-get -y update \
+    && apt-get -y upgrade \
+    && apt-get -y install build-essential clamav clamav-daemon curl disktype dvd+rw-tools fdisk git libimage-exiftool-perl mediainfo wget python3 python3-pip sleuthkit sudo tree unzip software-properties-common default-jre \
+#   note: if commenting following two lines, remove space and \ after default-jre on previous line
+    && echo $USERNAME ALL=\(ALL\) NOPASSWD: /bin/apt-get -y update, /bin/apt-get -y upgrade, /bin/freshclam > /etc/sudoers.d/$USERNAME \
+    && chmod 0440 /etc/sudoers.d/$USERNAME
 
+# run freshclam
 RUN freshclam
 
 # old: RUN cp -r /etc/clamav/ /var/run && freshclam && /etc/init.d/clamav-daemon start && freshclam
