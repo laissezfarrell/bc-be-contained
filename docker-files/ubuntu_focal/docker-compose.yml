@@ -1,8 +1,8 @@
 services: 
-  brunnhilde:
-    image: foc:add_user
+  service_name:
+    image: image:name
     volumes:
-      - $HOME/Desktop/docker_tests:/home/processing
+      - /path/on/host:path/in/container
     tty: true
     stdin_open: true
-    user: bjdietz
+    user: name_of_preexisting_user #eg, tuffy
