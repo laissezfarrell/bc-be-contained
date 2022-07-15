@@ -1,0 +1,8 @@
+services: 
+  brunnhilde:
+    image: foc:add_user
+    volumes:
+      - $HOME/Desktop/docker_tests:/home/processing
+    tty: true
+    stdin_open: true
+    user: bjdietz
