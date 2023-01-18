@@ -1,0 +1,8 @@
+services: 
+  service_name:
+    image: image:name
+    volumes:
+      - /path/on/host:path/in/container
+    tty: true
+    stdin_open: true
+    user: name_of_preexisting_user #eg, tuffy
