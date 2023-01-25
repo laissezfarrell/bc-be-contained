@@ -1,0 +1,13 @@
+version : '2'
+services: 
+  rlerecs:
+    image: focal:erecs2023
+    container_name: RubBit2023_01
+    platform: linux/amd64
+    volumes:
+      - /d/new-acquisition:/home/accessions
+      - /d/processing:/home/processing
+      - /c/shared-git-projects/rl-bitcurator-scripts:/home/scripts
+    tty: true
+    stdin_open: true
+    user: rluser #eg, tuffy
